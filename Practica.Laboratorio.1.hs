@@ -332,11 +332,14 @@ cuadrupla n = [ (a,b,c,d) | a <- [0..n], b <- [0..n], c <- [0..n], d <- [0..n], 
 -- 'xs' sin elementos repetidos
 -- unique :: [Int] -> [Int]
 
--- unique :: [Int] -> [Int]
--- unique [] = []
--- unique [x] = [x]
--- unique (x:xs) = [if n == x then n else xs | n <- xs  ]
+unique [] = []
+unique (x:xs) = if elem x xs then unique xs else x:unique xs
 
+esta x [] = False
+esta x (y:ys) = if x == y then True else esta x ys
+
+unique2 [] = []
+unique2 (x:xs) = if esta x xs then unique xs else x: unique xs 
 {-
 6) El producto escalar de dos listas de enteros de igual longitud
 es la suma de los productos de los elementos sucesivos (misma
@@ -346,8 +349,7 @@ devuelva el producto escalar de dos listas.
 Sugerencia: Usar las funciones 'zip' y 'sum'. -}
 
 
-scalarProduct [] [] = []
-scalarProduct xs ys = sum zip xs ys  
+scalarProduct xs ys = sum [ x*y | (x,y) <- zip xs ys ]
 
 {-
 
@@ -423,20 +425,35 @@ longitudes (x:xs) = length x : (longitudes xs)
 -- la lista de aquellos pares en los que la primera componente es
 -- menor que el triple de la segunda
 
--- orden [] = []
--- orden (x:xs) = []
+orden [] = []
+orden ((x,y):xs) = if x < y*3 then (x,y): orden xs else orden xs
 
 
-{-
-i) 'pares', que dada una lista de enteros, devuelve la lista
-de los elementos pares
 
-j) 'letras', que dada una lista de caracteres, devuelve la
-lista de aquellos que son letras (minúsculas o mayúsculas)
+-- i) 'pares', que dada una lista de enteros, devuelve la lista
+--de los elementos pares
 
-k) 'masDe', que dada una lista de listas 'xss' y un
-número 'n', devuelve la lista de aquellas listas de 'xss'
-con longitud mayor que 'n' -}
+pares :: [Int] -> [Int]
+pares [] = []
+pares (x:xs) = if even x then x: pares xs else pares xs
+
+
+-- j) 'letras', que dada una lista de caracteres, devuelve la
+-- lista de aquellos que son letras (minúsculas o mayúsculas)
+
+-- letras :: [Char] -> [Char]
+-- letras [] = []
+-- letras (x:xs) = if isLetter x 
+
+-- No se porque la funcion isLetter no funciona.
+
+
+-- k) 'masDe', que dada una lista de listas 'xss' y un
+-- número 'n', devuelve la lista de aquellas listas de 'xss'
+-- con longitud mayor que 'n' 
+
+masDe [] n = []
+masDe (xs:xss) n = if length xs > n then xs: masDe xss n else masDe xss n  
 
 {-
 8) Redefinir las funciones del ejercicio anterior usando foldr, map y filter.
