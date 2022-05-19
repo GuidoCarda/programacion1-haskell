@@ -1,5 +1,6 @@
 module Practica0 where
 
+import Data.Char
 import Data.List
 
 {-
@@ -459,3 +460,77 @@ masDe (xs:xss) n = if length xs > n then xs: masDe xss n else masDe xss n
 8) Redefinir las funciones del ejercicio anterior usando foldr, map y filter.
 ver su definición en https://hoogle.haskell.org/
 -}
+
+
+
+
+-- 7) Sin usar funciones definidas en el
+-- preludio, defina recursivamente las siguientes funciones y
+-- determine su tipo más general:
+
+--a) 'suma', que suma todos los elementos de una lista de números
+
+suma' xs = foldr (+) 0 xs 
+
+
+-- b) 'alguno', que devuelve True si algún elemento de una
+-- lista de valores booleanos es True, y False en caso
+-- contrario
+
+alguno' xs = foldr  (||) False xs
+
+-- c) 'todos', que devuelve True si todos los elementos de
+-- una lista de valores booleanos son True, y False en caso
+-- contrario
+
+todos' xs = foldr (&&) True xs
+
+-- d) 'codes', que dada una lista de caracteres, devuelve la
+-- lista de sus ordinales
+
+-- codes' xs = map (+1) xs 
+
+-- e) 'restos', que calcula la lista de los restos de la
+-- división de los elementos de una lista de números dada por otro
+-- número dado
+
+restos' xs n = map (\x -> x `mod` n) xs
+
+-- f) 'cuadrados', que dada una lista de números, devuelva la
+-- lista de sus cuadrados
+
+-- cuadrados' xs = map (^2) xs
+-- Es lo mismo que: 
+cuadrados' xs = map (\x -> x^2) xs
+
+-- g) 'longitudes', que dada una lista de listas, devuelve la
+-- lista de sus longitudes
+
+longitudes' xss = map (length) xss
+
+-- h) 'orden', que dada una lista de pares de números, devuelve
+-- la lista de aquellos pares en los que la primera componente es
+-- menor que el triple de la segunda
+
+orden' xs = filter (\(x,y) -> x < 3*y ) xs
+
+-- i) 'pares', que dada una lista de enteros, devuelve la lista
+--de los elementos pares
+
+-- pares' xs = filter (even) xs
+pares' xs = filter (\x -> x `mod` 2 == 0) xs
+
+-- j) 'letras', que dada una lista de caracteres, devuelve la
+-- lista de aquellos que son letras (minúsculas o mayúsculas)
+
+letras' xs = filter (\x -> elem x (['a'..'z']++['A'..'Z']) ) xs
+
+-- la funcion definida en el preludio elem devuelve true si el elemento x esta en la lista xs que le pasemos como parametro
+
+
+-- k) 'masDe', que dada una lista de listas 'xss' y un
+-- número 'n', devuelve la lista de aquellas listas de 'xss'
+-- con longitud mayor que 'n' 
+
+masDe' xss n = filter (\xs -> length xs > n) xss
+
