@@ -488,7 +488,8 @@ todos' xs = foldr (&&) True xs
 -- d) 'codes', que dada una lista de caracteres, devuelve la
 -- lista de sus ordinales
 
--- codes' xs = map (+1) xs 
+-- codes' xs = map (ord) xs
+codes' xs = map (\x -> ord x) xs
 
 -- e) 'restos', que calcula la lista de los restos de la
 -- división de los elementos de una lista de números dada por otro
