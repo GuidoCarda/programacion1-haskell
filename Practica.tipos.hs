@@ -57,7 +57,6 @@ data Shape = Circle Float | Rect Float Float
 
 data Nat = Zero | Suc Nat deriving Show
 
-
 add n Zero = n
 add n (Suc m) = Suc ( add n m )
 
@@ -68,7 +67,6 @@ int2Nat n = Suc ( int2Nat (n-1) )
 nat2Int :: Nat -> Int
 nat2Int Zero = 0
 nat2Int (Suc n) = 1 + nat2Int n
-
 
 --SUMA
 -- DATA Nat=Zero o suc Nat=1
@@ -93,8 +91,11 @@ mult n (Suc m) = add n (mult n m)
 
 pot :: Nat->Nat->Nat
 pot n Zero = (int2Nat 1)  -- Devuelvo 1 ya que todo numero elevado a 0 es 1. Uso la funcion int2Nat para pasar el uno de int a natural
-pot n (Suc m) = mult n (pot n m) -- La potencia es igual a n + n, m veces
+pot n (Suc m) = mult n (pot n m) -- La potencia es igual a n * n, m veces
 
+
+-- n * n * n * n 
+--    m veces
 
 -- n 2
 -- n*n
