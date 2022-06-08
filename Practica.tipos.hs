@@ -107,3 +107,41 @@ pot n (Suc m) = mult n (pot n m) -- La potencia es igual a n * n, m veces
 
 
 -- Exponenciacion para Nat
+
+
+
+{----- Practica 2 -----}
+
+--Ejercicio 1
+
+-- Forma 1 usando Type
+type Color1 = (Int,Int,Int)
+
+mezclar1 :: Color1 -> Color1 -> Color1
+mezclar1 (r1,g1,b1) (r2,g2,b2) = ( (div (r1+r2) 2), (div (g1+g2) 2), (div (b1+b2) 2))
+
+-- Forma 2 usando Data
+data Color2 = RGB Int Int Int deriving Show
+
+mezclar2 :: Color2 -> Color2 -> Color2
+mezclar2 (RGB r1 g1 b1) (RGB r2 g2 b2) = RGB (div (r1+r2) 2) (div (g1+g2) 2) (div (b1+b2) 2)
+
+--Forma 3 usando registros
+data Color3 = Color { red :: Int
+                    , green :: Int
+                    , blue :: Int 
+                    } deriving Show
+
+mezclar3 :: Color3 -> Color3 -> Color3
+mezclar3 (Color { red = r1, green = g1, blue = b1}) (Color { red = r2, green = g2, blue = b2}) = 
+  Color { red = ( div (r1+r2) 2), green = (div (g1+g2) 2), blue = (div (b1+b2) 2) }  
+
+-- mezclar3 (Color {red=150,blue=0,green=0}) (Color {red=230,blue=0,green=0})
+
+-- Forma 4 usando types
+
+type IntColor = Int
+type Color4 = ( IntColor, IntColor , IntColor)
+
+mezclar4 :: Color4 -> Color4 -> Color4
+mezclar4 (r1,g1,b1) (r2,g2,b2) = ((div (r1+r2) 2), (div (g1+g2) 2), (div (b1+b2) 2))
