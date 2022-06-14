@@ -1,14 +1,14 @@
-type Pos = (Int, Int)
-type Elemento = Char
-type Matriz = [[Elemento]]
+-- type Pos = (Int, Int)
+-- type Elemento = Char
+-- type Matriz = [[Elemento]]
 
-tablero = [ ['1','2','3'],
-            ['4','5','6'],
-            ['7','8','9']
-          ]
+-- tablero = [ ['1','2','3'],
+--             ['4','5','6'],
+--             ['7','8','9']
+--           ]
 
-ver :: Pos -> Matriz -> Elemento
-ver (f,c) t = (t!!f)!!c
+-- ver :: Pos -> Matriz -> Elemento
+-- ver (f,c) t = (t!!f)!!c
 
 
 {-
@@ -112,7 +112,7 @@ pot n (Suc m) = mult n (pot n m) -- La potencia es igual a n * n, m veces
 
 {----- Practica 2 -----}
 
---Ejercicio 1
+{---------- Ejercicio 1 ----------}
 
 -- Forma 1 usando Type
 type Color1 = (Int,Int,Int)
@@ -145,3 +145,37 @@ type Color4 = ( IntColor, IntColor , IntColor)
 
 mezclar4 :: Color4 -> Color4 -> Color4
 mezclar4 (r1,g1,b1) (r2,g2,b2) = ((div (r1+r2) 2), (div (g1+g2) 2), (div (b1+b2) 2))
+
+
+{---------- Ejercicio 2 ----------}
+
+
+type SecChars = [Char]
+type Pos = Int
+type Linea = (SecChars, Pos)
+
+
+vacia :: Linea
+vacia = ([], 0)
+
+moverIzq :: Linea -> Linea
+moverIzq (xs,p) | p == 0 = (xs,p)
+                | otherwise = (xs, p-1)
+
+moverDer :: Linea -> Linea
+moverDer (xs,p) | p == (length xs) = (xs,p)
+                | otherwise = (xs, p+1)
+
+moverIni :: Linea -> Linea
+moverIni (xs,p) = (xs, 0)
+
+moverFin :: Linea -> Linea
+moverFin (xs,p) = (xs, length xs)
+
+insertar :: Char -> Linea -> Linea
+-- insertar c (xs,p)
+                
+
+ins xs c 0 = c:xs
+ins (x:xs) c p = x:( ins xs c (p-1))
+                  
