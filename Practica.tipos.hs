@@ -173,9 +173,15 @@ moverFin :: Linea -> Linea
 moverFin (xs,p) = (xs, length xs)
 
 insertar :: Char -> Linea -> Linea
--- insertar c (xs,p)
-                
+insertar c (xs,p) = (ins xs c p, p+1)
 
 ins xs c 0 = c:xs
 ins (x:xs) c p = x:( ins xs c (p-1))
-                  
+
+borrar :: Linea -> Linea
+borrar (xs, p) | p == 0 = (xs,p)
+               | otherwise = (borr xs p, (p-1))
+
+borr [] p = []
+borr (x:xs) 1 = xs
+borr (x:xs) p = x: borr xs (p-1)
