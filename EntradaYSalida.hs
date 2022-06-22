@@ -1,7 +1,6 @@
 import Data.Char
 import System.IO
 
-
 {-
 
   Que es IO? 
@@ -93,7 +92,20 @@ crearJugador = do
   putStrLn "Ingrese su edad"
   age <- getLine
   let jugador = crearRegistro name lastName age
-  putStrLn (nombre jugador ++  apellido jugador ++ edad jugador)
+  putStrLn (nombre jugador ++ " " ++ apellido jugador ++ " " ++ edad jugador)
+  caracter <- getChar
+  putChar caracter
 
 
 crearRegistro name lastName age = Jugador { nombre=name, apellido=lastName, edad=age }
+
+
+
+ahorcado = do
+  putStrLn "Ingrese su nombre"
+  name <- getLine
+  putStrLn "Ingrese una palabra"
+  word <- getLine
+  putStrLn showWord word
+
+showWord word = map word (/x -> "-") 
